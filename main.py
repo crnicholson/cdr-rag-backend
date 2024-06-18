@@ -6,7 +6,7 @@ app = Flask(__name__)
 CORS(app)
 
 
-@app.route("/api/time", methods=["GET"])
+@app.route("/api", methods=["GET"])
 def return_home():
     return jsonify({"time": str(datetime.now())})
 
