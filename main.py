@@ -27,14 +27,15 @@ def send_message():
     message = data.get("message")
     print(f"Message received: {message}")
     print(f"Current key: {key}")
-    client = OpenAI(api_key=key)
-    try:
-        response = client.Completion.create(
-            engine="text-davinci-003", prompt=message, max_tokens=150
-        )
-        return jsonify({"message": response.choices[0].text.strip()}), 200
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+    # client = OpenAI(api_key=key)
+    # try:
+    #     response = client.Completion.create(
+    #         engine="text-davinci-003", prompt=message, max_tokens=150
+    #     )
+    #     return jsonify({"message": response.choices[0].text.strip()}), 200
+    # except Exception as e:
+    #     return jsonify({"error": str(e)}), 500
+    return jsonify({"message": "Hello, World!"}), 200
 
 
 if __name__ == "__main__":
