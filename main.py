@@ -11,10 +11,11 @@ app = Flask(__name__)
 CORS(app)
 
 
+global key  # This is necessary to modify the global key variable
+key = ""
+
 @app.route("/api/send-key", methods=["POST"])
 def get_key():
-    global key  # This is necessary to modify the global key variable
-    key = ""
     data = request.json
     key = data.get("message")
     print(f"Key received: {key}")
