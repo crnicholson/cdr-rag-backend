@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from datetime import datetime
+
 # import fitz  # PyMuPDF
 # import textwrap
 from openai import OpenAI
@@ -9,12 +10,11 @@ from openai import OpenAI
 app = Flask(__name__)
 CORS(app)
 
-global key
-key = ""
-
 
 @app.route("/api/send-key", methods=["POST"])
 def get_key():
+    global key  # This is necessary to modify the global key variable
+    key = ""
     data = request.json
     key = data.get("message")
     print(f"Key received: {key}")
