@@ -9,12 +9,12 @@ from openai import OpenAI
 app = Flask(__name__)
 CORS(app)
 
+global key
 key = ""
 
 
 @app.route("/api/send-key", methods=["POST"])
 def get_key():
-    global key  # Declare key as global to modify the global variable
     data = request.json
     key = data.get("message")
     print(f"Key received: {key}")
@@ -28,9 +28,14 @@ def send_message():
     print(f"Message received: {message}")
     print(f"Current key: {key}")
     client = OpenAI(api_key=key)
-    return jsonify({"message": "Testing testing"})
+    try:
+        response = client.Completion.create(
+            engine="text-davinci-003", prompt=message, max_tokens=150
+        )
+        return jsonify({"message": response.choices[0].text.strip()}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 if __name__ == "__main__":
-    print(f"Initial key: {key}")
     app.run(debug=True, port=7359)
