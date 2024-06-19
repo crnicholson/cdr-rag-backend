@@ -1,8 +1,8 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from datetime import datetime
-import fitz  # PyMuPDF
-import textwrap
+# import fitz  # PyMuPDF
+# import textwrap
 from openai import OpenAI
 
 
