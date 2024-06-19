@@ -14,7 +14,6 @@ CORS(app)
 @app.route("/api/send-key", methods=["POST"])
 def get_key():
     global key
-    key = ""
     data = request.json
     key = data.get("message")
     print(f"Key received: {key}")
